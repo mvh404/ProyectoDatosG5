@@ -3,8 +3,12 @@ package universidad.utilidades;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import universidad.controladores.CursoControlador;
 
 public class Menu {
+
+  //Instancias de controladores
+  private static final CursoControlador cursoControlador = new CursoControlador();
 
   // Buffer para leer la entrada del usuario desde la consola.
   private static final BufferedReader reader = new BufferedReader(
@@ -85,7 +89,7 @@ public class Menu {
 
         switch (opcion) {
           case 1:
-            System.out.println("Creando curso desde el controlador");
+            agregarCurso(reader);
             break;
           case 2:
             System.out.println("Creando estudiante desde el controlador");
@@ -201,5 +205,24 @@ public class Menu {
     System.out.println("3. Volver");
     System.out.println(divisor);
     System.out.println("Escribe una de las opciones:");
+  }
+
+  /**
+   * 1- Crear Curso
+   */
+  private static void agregarCurso(BufferedReader reader) throws IOException {
+    System.out.print("Ingrese el id del curso: ");
+    String id = reader.readLine();
+
+    System.out.print("Ingrese el nombre del curso: ");
+    String nombre = reader.readLine();
+
+    System.out.print("Ingrese la descripción del curso: ");
+    String descripcion = reader.readLine();
+
+    System.out.print("Ingrese el número de grupo del curso: ");
+    String numeroGrupo = reader.readLine();
+
+    cursoControlador.agregarCurso(id, nombre, descripcion, numeroGrupo);
   }
 }

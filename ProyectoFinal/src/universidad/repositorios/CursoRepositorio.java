@@ -1,16 +1,39 @@
 package universidad.repositorios;
 
+import java.util.function.Predicate;
+import universidad.modelos.Curso;
+import universidad.utilidades.LinkList;
+
+/**
+ * Clase que representa el repositorio de cursos.
+ * Este repositorio utiliza una lista enlazada para simular la persistencia de datos de cursos.
+ */
 public class CursoRepositorio {
-  //Este repositorio manejará la lectura y escritura en el archivo JSON o lo que se use para persistencia
 
-  // EJEM:
+  //Lista enlazada genérica que acepta objetos de tipo Curso.
+  private LinkList<Curso> cursos;
 
-  // private final String archivo = "cursos.json";
-  // private Gson gson = new Gson();
+  /**
+   * Constructor del repositorio de cursos.
+   * Inicializa la lista enlazada para almacenar los objetos Curso.
+   */
+  public CursoRepositorio() {
+    this.cursos = new LinkList<>();
+  }
 
-  // public void agregarCurso(Curso curso) throws IOException {
-  //     List<Curso> cursos = obtenerCursos();
-  //     cursos.add(curso);
-  //     guardarCursos(cursos);
-  // }
+  /**
+   * Método para agregar un curso a la lista enlazada.
+   */
+  public void agregarCurso(Curso curso) {
+    LinkList.insertNode(cursos, curso);
+  }
+
+  /**
+   * Método para verificar si existe un curso con el id dado.
+   */
+  public boolean existeCursoPorId(String id) {
+    //byId es la condición
+    Predicate<Curso> byId = curso -> curso.getId().equals(id);
+    return cursos.exists(byId);
+  }
 }

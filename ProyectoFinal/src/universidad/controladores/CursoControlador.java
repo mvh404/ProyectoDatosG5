@@ -1,17 +1,35 @@
 package universidad.controladores;
 
+import universidad.excepciones.CursoExcepciones.CursoYaExisteExcepcion;
+import universidad.modelos.Curso;
+import universidad.repositorios.CursoRepositorio;
+
 public class CursoControlador {
-  //El controlador interactúa con el servicio y se integra con la interfaz de usuario (en este caso, el menú).
 
-  //EJEMPLO
-  // private CursoServicio servicio = new CursoServicio();
+  private CursoRepositorio repositorio;
 
-  // public void crearCurso(String id, String nombre, String descripcion) {
-  //     try {
-  //         servicio.crearCurso(id, nombre, descripcion);
-  //         System.out.println("Curso creado exitosamente.");
-  //     } catch (IOException e) {
-  //         System.out.println("Error al crear el curso: " + e.getMessage());
-  //     }
-  // }
+  public CursoControlador() {
+    this.repositorio = new CursoRepositorio();
+  }
+
+  public void agregarCurso(
+    String id,
+    String nombre,
+    String descripcion,
+    String numeroGrupo
+  ) {
+    try {
+      if (repositorio.existeCursoPorId(id)) {
+        throw new CursoYaExisteExcepcion(
+          "Ya existe un curso con el id proporcionado."
+        );
+      }
+      Curso curso = new Curso(id, nombre, descripcion, numeroGrupo);
+      repositorio.agregarCurso(curso);
+
+      System.out.println("\nCurso agregado exitosamente.");
+    } catch (CursoYaExisteExcepcion e) {
+      System.out.println("\nError al agregar curso: " + e.getMessage());
+    }
+  }
 }
