@@ -3,12 +3,15 @@ package universidad.utilidades;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import universidad.controladores.CajasControlador;
 import universidad.controladores.CursoControlador;
 
 public class Menu {
 
   //Instancias de controladores
   private static final CursoControlador cursoControlador = new CursoControlador();
+  private static final CajasControlador cajaControlador = new CajasControlador();
 
   // Buffer para leer la entrada del usuario desde la consola.
   private static final BufferedReader reader = new BufferedReader(
@@ -172,14 +175,12 @@ public class Menu {
 
         switch (opcion) {
           case 1:
-            System.out.println(
-              "Ingresando persona a la cola desde el controlador"
-            );
+            agregarAcola(reader);
             break;
           case 2:
-            System.out.println(
-              "Atendiendo a la siguiente persona desde el controlador"
-            );
+
+            MenuAtencion(reader);
+
             break;
           case 3:
             System.out.println("Volviendo al menú principal...");
@@ -207,6 +208,48 @@ public class Menu {
     System.out.println("Escribe una de las opciones:");
   }
 
+   /**
+   * Imprime las opciones del menú del sistema de cajas.
+   * @throws IOException 
+   */
+  private static void MenuAtencion(BufferedReader reader) throws IOException {
+    
+    String persona = cajaControlador.personaParaAtender();
+    if(persona != null ){
+      System.out.println(divisor);
+      System.out.println("La persona a anteder es: " + persona);
+      System.out.println("Opciones de atención de persona:\n");
+      System.out.println("1. Atender persona");
+      System.out.println("2. Cancelar");
+      System.out.println(divisor);
+      System.out.println("Escribe una de las opciones:");
+  
+      boolean volver = false;
+  
+      while (!volver) {
+  
+        try {
+          int opcion = Integer.parseInt(reader.readLine());
+  
+          switch (opcion) {
+            case 1:
+              cajaControlador.atenderCola();
+              volver = true;
+              break;
+            case 2:
+              System.out.println("Cancelando...");
+              volver = true;
+              break;
+            default:
+              System.out.println("Opción no válida, intenta de nuevo.");
+          }
+        } catch (NumberFormatException e) {
+          System.out.println("Por favor, introduce un número válido.");
+        }
+      }
+    }
+  }
+
   /**
    * 1- Crear Curso
    */
@@ -224,5 +267,20 @@ public class Menu {
     String numeroGrupo = reader.readLine();
 
     cursoControlador.agregarCurso(id, nombre, descripcion, numeroGrupo);
+  }
+
+
+    /**
+   * Persona a cola
+     *
+   */
+  private static void agregarAcola(BufferedReader reader) throws IOException{
+    System.out.print("Ingrese el id de la persona: ");
+    int id = Integer.parseInt(reader.readLine());
+
+    System.out.print("Ingrese el nombre de la persona: ");
+    String nombre = reader.readLine();
+
+    cajaControlador.agregarPersona(id, nombre);
   }
 }

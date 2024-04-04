@@ -2,7 +2,7 @@ package universidad.utilidades;
 
 public class Node<T> {
 
-  T data;
+  public T data;
   Node<T> next;
 
   //Constructor para crear un nuevo nodo
