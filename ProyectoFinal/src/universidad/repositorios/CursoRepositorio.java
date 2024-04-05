@@ -2,6 +2,7 @@ package universidad.repositorios;
 
 import java.util.function.Predicate;
 import universidad.modelos.Curso;
+import universidad.modelos.Estudiante;
 import universidad.utilidades.LinkList;
 
 /**
@@ -35,5 +36,12 @@ public class CursoRepositorio {
     //byId es la condición
     Predicate<Curso> byId = curso -> curso.getId().equals(id);
     return cursos.exists(byId);
+  }
+
+  /**
+   * Método para devolver todos los cursos
+   */
+  public LinkList<Curso> obtenerTodosLosCursos() {
+    return cursos;
   }
 }
