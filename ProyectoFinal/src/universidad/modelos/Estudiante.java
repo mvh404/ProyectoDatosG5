@@ -1,5 +1,14 @@
 package universidad.modelos;
 
-public class Estudiante {
-  //Representa un estudiante, con propiedades como id, nombre, email, y una lista de Cursos a los que está inscrito.
+import universidad.utilidades.LinkList;
+
+public class Estudiante extends Persona {
+
+  private LinkList<Curso> cursosInscritos;
+
+  public Estudiante(String id, String nombre, String correo) {
+    super(id, nombre, correo);
+    this.cursosInscritos = new LinkList<>();
+  }
+  //Incribir el estudiante a un curso = inscribirCurso(Curso curso)
 }
