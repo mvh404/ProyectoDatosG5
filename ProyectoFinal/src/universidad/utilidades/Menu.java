@@ -21,7 +21,7 @@ public class Menu {
 
   // Un divisor para mejorar la visualización del menú en la consola.
   private static String divisor =
-    "\n------------------------------------------\n";
+    "\n--------------------------------------------\n";
 
   /**
    * Constructor privado para evitar la instanciación de la clase.
