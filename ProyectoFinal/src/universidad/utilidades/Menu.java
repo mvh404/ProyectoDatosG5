@@ -230,6 +230,13 @@ public class Menu {
     cursoControlador.imprimirTodosLosCursos();
   }
 
+  private static void buscarEstudianteId(BufferedReader reader) throws IOException{
+    System.out.println("Ingrese el id del estudiante a buscar: ");
+    String id = reader.readLine();
+
+    
+  }
+
   /**
    * 2- Crear Estudiante
    */

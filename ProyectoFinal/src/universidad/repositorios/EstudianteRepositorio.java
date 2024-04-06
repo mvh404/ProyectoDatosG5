@@ -38,6 +38,17 @@ public class EstudianteRepositorio {
     return estudiantes.exists(byCorreo);
   }
 
+  public boolean existeEstudiantePorid(int id){
+    Predicate<Estudiante> byId = estudiante ->
+    estudiante.getId().equals(id);
+  return estudiantes.exists(byId);
+  }
+  public boolean existeEstudiantePorNombre(String nombre){
+    Predicate<Estudiante> byNombre = estudiante ->
+    estudiante.getNombre().equals(nombre);
+  return estudiantes.exists(byNombre);
+  }
+
   /**
    * Método para devolver todos los estudiantes
    */
