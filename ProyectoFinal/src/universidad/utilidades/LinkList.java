@@ -1,5 +1,6 @@
 package universidad.utilidades;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public class LinkList<T> {
@@ -76,5 +77,18 @@ public class LinkList<T> {
   // Metodo para ver si la lista esta vacia
   public boolean isEmpty() {
     return head == null;
+  }
+  
+  /**
+   * Itera sobre todos los elementos de la lista enlazada y ejecuta una acción específica en cada uno de ellos.
+   * Acepta un Consumer<T> como parámetro, que representa una operación que se aplicará a cada elemento
+   *
+   **/
+  public void forEach(Consumer<T> action) {
+    Node<T> current = head;
+    while (current != null) {
+      action.accept(current.data);
+      current = current.next;
+    }
   }
 }
