@@ -38,17 +38,6 @@ public class EstudianteRepositorio {
     return estudiantes.exists(byCorreo);
   }
 
-  public boolean existeEstudiantePorid(int id){
-    Predicate<Estudiante> byId = estudiante ->
-    estudiante.getId().equals(id);
-  return estudiantes.exists(byId);
-  }
-  public boolean existeEstudiantePorNombre(String nombre){
-    Predicate<Estudiante> byNombre = estudiante ->
-    estudiante.getNombre().equals(nombre);
-  return estudiantes.exists(byNombre);
-  }
-
   /**
    * Método para devolver todos los estudiantes
    */
@@ -57,19 +46,38 @@ public class EstudianteRepositorio {
   }
 
   /*
-   * Funcion para buscar estudiante por su nombre
+   * Metodo para devolver estudiantes por su nombre
    */
+  public Estudiante obtenerEstudiantePorNombre(String nombre) {
+    // Array para almacenar el estudiante encontrado
+    Estudiante[] estudianteEncontrado = new Estudiante[1];
 
-   public Estudiante obtenerEstudiantePorNombre(String nombre) {
-    Predicate<Estudiante> byNombre = estudiante -> estudiante.getNombre().equals(nombre);
-    Estudiante[] estudianteEncontrado = new Estudiante[1]; // Array de una sola posición para almacenar el estudiante encontrado
-
+    // Método forEach de LinkList para iterar sobre los elementos de la lista.
     estudiantes.forEach(estudiante -> {
-        if (byNombre.test(estudiante)) {
-            estudianteEncontrado[0] = estudiante; // Almacena el estudiante encontrado
-        }
+      if (estudiante.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
+        estudianteEncontrado[0] = estudiante;
+      }
     });
 
-    return estudianteEncontrado[0]; // Devuelve el estudiante encontrado (o null si no se encontró ninguno)
-}
+    // Devuelve el estudiante encontrado
+    return estudianteEncontrado[0];
+  }
+
+  /*
+   * Metodo para devolver estudiantes por su id
+   */
+  public Estudiante obtenerEstudiantePorId(String id) {
+    // Array para almacenar el estudiante encontrado
+    Estudiante[] estudianteEncontrado = new Estudiante[1];
+
+    // Método forEach de LinkList para iterar sobre los elementos de la lista.
+    estudiantes.forEach(estudiante -> {
+      if (estudiante.getId().toLowerCase().equals(id.toLowerCase())) {
+        estudianteEncontrado[0] = estudiante;
+      }
+    });
+
+    // Devuelve el estudiante encontrado
+    return estudianteEncontrado[0];
+  }
 }

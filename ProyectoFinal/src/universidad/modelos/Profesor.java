@@ -18,8 +18,6 @@ public class Profesor extends Persona {
     return carnet;
   }
 
-  
-
   //Setters
   public void setCarnet(String carnet) {
     this.carnet = carnet;

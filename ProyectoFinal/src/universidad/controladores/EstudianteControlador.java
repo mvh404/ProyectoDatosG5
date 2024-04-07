@@ -2,8 +2,8 @@ package universidad.controladores;
 
 import universidad.excepciones.EstudianteExcepciones.EstudianteYaExisteExcepcion;
 import universidad.modelos.Estudiante;
+import universidad.modelos.Profesor;
 import universidad.repositorios.EstudianteRepositorio;
-import universidad.utilidades.LinkList;
 import universidad.utilidades.Utilities;
 
 public class EstudianteControlador {
@@ -39,15 +39,32 @@ public class EstudianteControlador {
       .forEach(estudiante -> System.out.println(estudiante.getNombre()));
   }
 
-  public void imprimirEstudianterporNombre(String nombre) {
-    Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorNombre(nombre);
+  public void buscarEstudiantePorNombre(String nombre) {
+    Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorNombre(
+      nombre
+    );
+
     if (estudianteEncontrado != null) {
-        System.out.println("Estudiante encontrado:");
-        System.out.println("ID: " + estudianteEncontrado.getId());
-        System.out.println("Nombre: " + estudianteEncontrado.getNombre());
-        System.out.println("Correo: " + estudianteEncontrado.getCorreo());
+      imprimirEstudiante(estudianteEncontrado);
     } else {
-        System.out.println("No se encontró ningún estudiante con ese nombre.");
+      System.out.println("\nNo se encontró ningún estudiante con ese nombre.");
     }
-}
+  }
+
+  public void buscarEstudiantePorId(String id) {
+    Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorId(id);
+
+    if (estudianteEncontrado != null) {
+      imprimirEstudiante(estudianteEncontrado);
+    } else {
+      System.out.println("\nNo se encontró ningún estudiante con ese id.");
+    }
+  }
+
+  public void imprimirEstudiante(Estudiante estudiante) {
+    System.out.println("\nEstudiante encontrado:\n");
+    System.out.println("ID: " + estudiante.getId());
+    System.out.println("Nombre: " + estudiante.getNombre());
+    System.out.println("Correo: " + estudiante.getCorreo());
+  }
 }

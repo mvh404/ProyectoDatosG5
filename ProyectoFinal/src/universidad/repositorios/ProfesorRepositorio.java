@@ -62,10 +62,12 @@ public class ProfesorRepositorio {
 
     // Método forEach de LinkList para iterar sobre los elementos de la lista.
     profesores.forEach(profesor -> {
-      if (byNombre.test(profesor)) {
+      if (profesor.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
         profesorEncontrado[0] = profesor;
       }
     });
-    return profesorEncontrado[0]; // Devuelve el profesor encontrado
+
+    // Devuelve el profesor encontrado
+    return profesorEncontrado[0];
   }
 }
