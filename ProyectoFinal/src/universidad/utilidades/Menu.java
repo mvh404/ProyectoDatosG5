@@ -344,7 +344,7 @@ public class Menu {
    */
   private static void agregarAcola(BufferedReader reader) throws IOException{
     System.out.print("Ingrese el id de la persona: ");
-    int id = Integer.parseInt(reader.readLine());
+    String id = reader.readLine();
 
     System.out.print("Ingrese el nombre de la persona: ");
     String nombre = reader.readLine();

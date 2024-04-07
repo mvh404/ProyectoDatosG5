@@ -24,7 +24,7 @@ public class CajasRepositorio {
 
       Node<Persona> persona = this.cola.getFirstNode();
       this.cola.deleteFirstNode();
-      return persona.data.getnombre();
+      return persona.data.getNombre();
     } else {
       throw new ColaVaciaExcepcion("No puede quitar elemento de una cola vacia");
     }
@@ -33,9 +33,9 @@ public class CajasRepositorio {
     /**
    * Método para verificar si existe la persona en la cola.
    */
-  public boolean existePorId(int id) {
+  public boolean existePorId(String id) {
     //byId es la condición
-    Predicate<Persona> byId = persona -> persona.getid() == id;
+    Predicate<Persona> byId = persona -> persona.getId() == id;
     return cola.exists(byId);
   }
     /**

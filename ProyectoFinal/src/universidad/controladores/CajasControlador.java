@@ -24,7 +24,7 @@ public class CajasControlador {
   public String personaParaAtender()  {
     try{
       Persona persona =  repositorio.personaParaAtender();
-      return persona.getnombre();
+      return persona.getNombre();
     }
     catch(ColaVaciaExcepcion e) {
       System.out.println("\nError al atender: " + e.getMessage());
@@ -34,7 +34,7 @@ public class CajasControlador {
   }
 
     public void agregarPersona(
-    int id,
+    String id,
     String nombre
   ) {
     try {
