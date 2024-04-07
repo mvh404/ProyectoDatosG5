@@ -279,11 +279,12 @@ public class Menu {
   }
 
   /*
-   * 5- Buscar profesor por su nombre
+   * 8- Buscar profesor por su nombre
    */
   private static void buscarProfesorNombre(BufferedReader reader)
     throws IOException {
     System.out.println("Ingrese el nombre del profesor a buscar: ");
     String nombre = reader.readLine();
+    profesorControlador.imprimirProfesorPorNombre(nombre);
   }
 }

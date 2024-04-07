@@ -1,7 +1,6 @@
 package universidad.repositorios;
 
 import java.util.function.Predicate;
-import universidad.modelos.Estudiante;
 import universidad.modelos.Profesor;
 import universidad.utilidades.LinkList;
 
@@ -20,6 +19,14 @@ public class ProfesorRepositorio {
    */
   public ProfesorRepositorio() {
     this.profesores = new LinkList<>();
+  }
+
+  /**
+   * Constructor del repositorio de profesores.
+   * Usada para buscar profesores por nombre.
+   */
+  public ProfesorRepositorio(LinkList<Profesor> profesores) {
+    this.profesores = profesores;
   }
 
   /**
@@ -44,5 +51,21 @@ public class ProfesorRepositorio {
    */
   public LinkList<Profesor> obtenerTodosLosProfesores() {
     return profesores;
+  }
+
+  /*
+   * Metodo para devolver profesores por su nombre
+   */
+  public Profesor obtenerProfesorPorNombre(String nombre) {
+    // Array para almacenar el profesor encontrado
+    Profesor[] profesorEncontrado = new Profesor[1];
+
+    // Método forEach de LinkList para iterar sobre los elementos de la lista.
+    profesores.forEach(profesor -> {
+      if (byNombre.test(profesor)) {
+        profesorEncontrado[0] = profesor;
+      }
+    });
+    return profesorEncontrado[0]; // Devuelve el profesor encontrado
   }
 }

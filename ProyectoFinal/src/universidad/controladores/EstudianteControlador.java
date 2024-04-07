@@ -38,4 +38,8 @@ public class EstudianteControlador {
       .obtenerTodosLosEstudiantes()
       .forEach(estudiante -> System.out.println(estudiante.getNombre()));
   }
+
+  public void imprimirEstudiantePorId(){
+    
+  }
 }
