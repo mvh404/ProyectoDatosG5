@@ -47,8 +47,10 @@ public class LinkList<T> {
   }
 
   // Método para buscar un elemento basado en una condición.
-  // Ventaja es que funciona para cualquier objeto y no necesitamos agregar getters acá.
-  // Predicate define un único método abstracto llamado test, que toma un argumento de tipo T y retorna un booleano.
+  // Ventaja es que funciona para cualquier objeto y no necesitamos agregar
+  // getters acá.
+  // Predicate define un único método abstracto llamado test, que toma un
+  // argumento de tipo T y retorna un booleano.
   public boolean exists(Predicate<T> condition) {
     Node<T> current = head;
     while (current != null) {
@@ -60,6 +62,23 @@ public class LinkList<T> {
     return false;
   }
 
+  // Metodo para eliminar el primer nodo (head)
+  public Node<T> getFirstNode() {
+    return head;
+  }
+
+  // Metodo para eliminar el primer nodo (head)
+  public void deleteFirstNode() {
+    if (head != null) {
+      head = head.next;
+    }
+  }
+
+  // Metodo para ver si la lista esta vacia
+  public boolean isEmpty() {
+    return head == null;
+  }
+  
   /**
    * Itera sobre todos los elementos de la lista enlazada y ejecuta una acción específica en cada uno de ellos.
    * Acepta un Consumer<T> como parámetro, que representa una operación que se aplicará a cada elemento
