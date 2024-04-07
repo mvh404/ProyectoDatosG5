@@ -83,12 +83,13 @@ public class EstudianteControlador {
       return;
     }
 
-    if (estudiante.buscarCurso(curso)) {
+    if (estudiante.estaInscrito(curso)) {
       System.out.println("\nEl estudiante ya esta asignado a ese curso.");
       return;
     }
 
     estudiante.inscribirCurso(curso);
+    System.out.println("\nEl estudiante se inscribio exitosamente");
   }
 
 

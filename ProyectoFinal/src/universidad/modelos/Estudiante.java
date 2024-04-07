@@ -16,7 +16,7 @@ public class Estudiante extends Persona {
     cursosInscritos = LinkList.insertNode(cursosInscritos,curso);
   }
 
-  public boolean buscarCurso(Curso curso) {
+  public boolean estaInscrito(Curso curso) {
     return cursosInscritos.exists(curso);
   }
 }
