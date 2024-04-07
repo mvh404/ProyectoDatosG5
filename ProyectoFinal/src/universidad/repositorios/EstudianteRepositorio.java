@@ -44,4 +44,21 @@ public class EstudianteRepositorio {
   public LinkList<Estudiante> obtenerTodosLosEstudiantes() {
     return estudiantes;
   }
+
+  /*
+   * Funcion para buscar estudiante por su nombre
+   */
+
+   public Estudiante obtenerEstudiantePorNombre(String nombre) {
+    Predicate<Estudiante> byNombre = estudiante -> estudiante.getNombre().equals(nombre);
+    Estudiante[] estudianteEncontrado = new Estudiante[1]; // Array de una sola posición para almacenar el estudiante encontrado
+
+    estudiantes.forEach(estudiante -> {
+        if (byNombre.test(estudiante)) {
+            estudianteEncontrado[0] = estudiante; // Almacena el estudiante encontrado
+        }
+    });
+
+    return estudianteEncontrado[0]; // Devuelve el estudiante encontrado (o null si no se encontró ninguno)
+}
 }

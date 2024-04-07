@@ -256,6 +256,7 @@ public class Menu {
   private static void buscarEstudianteNombre(BufferedReader reader) throws IOException{
     System.out.println("Ingrese el nombre del estudiante a buscar: ");
     String nombre = reader.readLine(); 
+    estudianteControlador.imprimirEstudianterporNombre(nombre);
   }
 
 
