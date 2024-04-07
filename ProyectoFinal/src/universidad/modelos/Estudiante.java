@@ -11,4 +11,8 @@ public class Estudiante extends Persona {
     this.cursosInscritos = new LinkList<>();
   }
   //Incribir el estudiante a un curso = inscribirCurso(Curso curso)
+
+  // public void agregarCurso(Curso curso) {
+  //   LinkList.insertNode(cursosInscritos,curso);
+  // }
 }
