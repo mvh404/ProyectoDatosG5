@@ -58,15 +58,15 @@ public class ProfesorRepositorio {
    * Metodo para devolver profesores por su nombre
    */
   public Profesor obtenerProfesorPorNombre(String nombre) {
-        // Método forEach de LinkList para iterar sobre los elementos de la lista.
-        // Se le pasa un Consumer que busca el profesor por nombre.
-        Predicate<Profesor> byNombre = profesor -> profesor.getNombre().equals(nombre);
-        Profesor[] profesorEncontrado = new Profesor[1]; // Array para almacenar el profesor encontrado
-        profesores.forEach(profesor -> {
-            if (byNombre.test(profesor)) {
-                profesorEncontrado[0] = profesor;
-            }
-        });
-        return profesorEncontrado[0]; // Devuelve el profesor encontrado
-    }
+    Predicate<Profesor> byNombre = profesor -> profesor.getNombre().equals(nombre);
+    Profesor[] profesorEncontrado = new Profesor[1]; // Array de una sola posición para almacenar el profesor encontrado
+
+    profesores.forEach(profesor -> {
+        if (byNombre.test(profesor)) {
+            profesorEncontrado[0] = profesor; // Almacena el profesor encontrado
+        }
+    });
+
+    return profesorEncontrado[0]; // Devuelve el profesor encontrado (o null si no se encontró ninguno)
+  }
 }
