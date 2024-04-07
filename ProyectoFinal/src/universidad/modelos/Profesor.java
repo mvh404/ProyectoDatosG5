@@ -18,10 +18,7 @@ public class Profesor extends Persona {
     return carnet;
   }
 
-  @Override
-    public String toString() {
-        return "Profesor: " + nombre;
-    }
+  
 
   //Setters
   public void setCarnet(String carnet) {

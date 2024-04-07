@@ -38,6 +38,9 @@ public class ProfesorControlador {
       .forEach(profesor -> System.out.println(profesor.getNombre()));
   }
 
+  /*
+   * metodo para imprimir los profesores por nombre
+   */
   public void imprimirProfesorporNombre(String nombre) {
     Profesor profesorEncontrado = repositorio.obtenerProfesorPorNombre(nombre);
     if (profesorEncontrado != null) {
