@@ -21,7 +21,7 @@ public class Menu {
 
   // Un divisor para mejorar la visualización del menú en la consola.
   private static String divisor =
-    "\n--------------------------------------------\n";
+    "\n------------------------------------------\n";
 
   /**
    * Constructor privado para evitar la instanciación de la clase.
@@ -104,14 +104,10 @@ public class Menu {
             );
             break;
           case 4:
-            System.out.println(
-              "Buscando estudiante por id desde el controlador"
-            );
+            buscarEstudianteId(reader);
             break;
           case 5:
-            System.out.println(
-              "Buscando estudiante por nombre desde el controlador"
-            );
+            buscarEstudianteNombre(reader);
             break;
           case 6:
             crearProfesor(reader);
@@ -122,9 +118,7 @@ public class Menu {
             );
             break;
           case 8:
-            System.out.println(
-              "Buscando profesor por nombre desde el controlador"
-            );
+            buscarProfesorNombre(reader);
             break;
           case 9:
             System.out.println("Volviendo al menú principal...");
@@ -230,13 +224,6 @@ public class Menu {
     cursoControlador.imprimirTodosLosCursos();
   }
 
-  private static void buscarEstudianteId(BufferedReader reader) throws IOException{
-    System.out.println("Ingrese el id del estudiante a buscar: ");
-    String id = reader.readLine();
-
-    
-  }
-
   /**
    * 2- Crear Estudiante
    */
@@ -252,6 +239,28 @@ public class Menu {
 
     System.out.print("\nEstudiantes en el sistema: \n\n");
     estudianteControlador.imprimirTodosLosEstudiantes();
+  }
+
+  /*
+   * 4- Buscar estudiante por su ID
+   */
+  private static void buscarEstudianteId(BufferedReader reader)
+    throws IOException {
+    System.out.println("Ingrese el id del estudiante a buscar: ");
+    String id = reader.readLine();
+
+    estudianteControlador.buscarEstudiantePorId(id);
+  }
+
+  /*
+   * 5- Buscar estudiante por su nombre
+   */
+  private static void buscarEstudianteNombre(BufferedReader reader)
+    throws IOException {
+    System.out.println("Ingrese el nombre del estudiante a buscar: ");
+    String nombre = reader.readLine();
+
+    estudianteControlador.buscarEstudiantePorNombre(nombre);
   }
 
   /**
@@ -270,6 +279,18 @@ public class Menu {
     profesorControlador.agregarProfesor(nombre, correo, carnet);
 
     System.out.print("\nProfesores en el sistema: \n\n");
+
     profesorControlador.imprimirTodosLosProfesores();
+  }
+
+  /*
+   * 8- Buscar profesor por su nombre
+   */
+  private static void buscarProfesorNombre(BufferedReader reader)
+    throws IOException {
+    System.out.println("Ingrese el nombre del profesor a buscar: ");
+    String nombre = reader.readLine();
+
+    profesorControlador.buscarProfesorPorNombre(nombre);
   }
 }

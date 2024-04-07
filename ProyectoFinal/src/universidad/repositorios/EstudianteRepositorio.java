@@ -38,21 +38,46 @@ public class EstudianteRepositorio {
     return estudiantes.exists(byCorreo);
   }
 
-  public boolean existeEstudiantePorid(int id){
-    Predicate<Estudiante> byId = estudiante ->
-    estudiante.getId().equals(id);
-  return estudiantes.exists(byId);
-  }
-  public boolean existeEstudiantePorNombre(String nombre){
-    Predicate<Estudiante> byNombre = estudiante ->
-    estudiante.getNombre().equals(nombre);
-  return estudiantes.exists(byNombre);
-  }
-
   /**
    * Método para devolver todos los estudiantes
    */
   public LinkList<Estudiante> obtenerTodosLosEstudiantes() {
     return estudiantes;
+  }
+
+  /*
+   * Metodo para devolver estudiantes por su nombre
+   */
+  public Estudiante obtenerEstudiantePorNombre(String nombre) {
+    // Array para almacenar el estudiante encontrado
+    Estudiante[] estudianteEncontrado = new Estudiante[1];
+
+    // Método forEach de LinkList para iterar sobre los elementos de la lista.
+    estudiantes.forEach(estudiante -> {
+      if (estudiante.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
+        estudianteEncontrado[0] = estudiante;
+      }
+    });
+
+    // Devuelve el estudiante encontrado
+    return estudianteEncontrado[0];
+  }
+
+  /*
+   * Metodo para devolver estudiantes por su id
+   */
+  public Estudiante obtenerEstudiantePorId(String id) {
+    // Array para almacenar el estudiante encontrado
+    Estudiante[] estudianteEncontrado = new Estudiante[1];
+
+    // Método forEach de LinkList para iterar sobre los elementos de la lista.
+    estudiantes.forEach(estudiante -> {
+      if (estudiante.getId().toLowerCase().equals(id.toLowerCase())) {
+        estudianteEncontrado[0] = estudiante;
+      }
+    });
+
+    // Devuelve el estudiante encontrado
+    return estudianteEncontrado[0];
   }
 }
