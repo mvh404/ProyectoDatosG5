@@ -44,9 +44,13 @@ public class ProfesorControlador {
   public void imprimirProfesorporNombre(String nombre) {
     Profesor profesorEncontrado = repositorio.obtenerProfesorPorNombre(nombre);
     if (profesorEncontrado != null) {
-        System.out.println("Profesor encontrado: " + profesorEncontrado);
+        System.out.println("Profesor encontrado:");
+        System.out.println("ID: " + profesorEncontrado.getId());
+        System.out.println("Nombre: " + profesorEncontrado.getNombre());
+        System.out.println("Correo: " + profesorEncontrado.getCorreo());
+        System.out.println("Carnet: " + profesorEncontrado.getCarnet());
     } else {
         System.out.println("No se encontró ningún profesor con ese nombre.");
     }
-}
+  }
 }
