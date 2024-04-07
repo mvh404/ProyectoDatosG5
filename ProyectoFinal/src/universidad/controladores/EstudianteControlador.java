@@ -38,6 +38,11 @@ public class EstudianteControlador {
   }
 
 
+  public void agregarCurso(String nombre) {
+    
+  }
+
+
   public void imprimirTodosLosEstudiantes() {
     repositorio.obtenerTodosLosEstudiantes().forEach(estudiante -> 
       System.out.println(estudiante.getNombre())
