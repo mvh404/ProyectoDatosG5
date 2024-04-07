@@ -12,7 +12,11 @@ public class Estudiante extends Persona {
   }
   //Incribir el estudiante a un curso = inscribirCurso(Curso curso)
 
-  // public void agregarCurso(Curso curso) {
-  //   LinkList.insertNode(cursosInscritos,curso);
-  // }
+  public void inscribirCurso(Curso curso) {
+    cursosInscritos = LinkList.insertNode(cursosInscritos,curso);
+  }
+
+  public boolean buscarCurso(Curso curso) {
+    return cursosInscritos.exists(curso);
+  }
 }

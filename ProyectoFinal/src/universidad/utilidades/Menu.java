@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import universidad.controladores.CursoControlador;
 import universidad.controladores.EstudianteControlador;
 import universidad.controladores.ProfesorControlador;
+import universidad.modelos.Estudiante;
 
 public class Menu {
 
@@ -99,9 +100,7 @@ public class Menu {
             crearEstudiante(reader);
             break;
           case 3:
-            System.out.println(
-              "Asignando curso a estudiante desde el controlador"
-            );
+            asignarCurso(reader);
             break;
           case 4:
             buscarEstudianteId(reader);
@@ -240,6 +239,15 @@ public class Menu {
     System.out.print("\nEstudiantes en el sistema: \n\n");
     estudianteControlador.imprimirTodosLosEstudiantes();
   }
+
+
+  //3- Asignar curso a estudiante
+
+
+  public static void asignarCurso(BufferedReader reader) {
+    
+  }
+
 
   /*
    * 4- Buscar estudiante por su ID
