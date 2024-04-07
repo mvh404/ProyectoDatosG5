@@ -241,11 +241,18 @@ public class Menu {
   }
 
 
-  //3- Asignar curso a estudiante
+  //3- Asignar curso a estudiante por nombre
 
 
-  public static void asignarCurso(BufferedReader reader) {
-    
+  public static void asignarCurso(BufferedReader reader) throws IOException {
+    System.out.print("Ingrese el nombre del estudiante: ");
+    String nombreEstudiante = reader.readLine();
+
+    System.out.print("Ingrese el nombre del curso: ");
+    String nombreCurso = reader.readLine();
+
+    estudianteControlador.asignarCurso(nombreCurso, nombreEstudiante);
+
   }
 
 
