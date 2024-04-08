@@ -44,4 +44,38 @@ public class CursoRepositorio {
   public LinkList<Curso> obtenerTodosLosCursos() {
     return cursos;
   }
+
+
+  public Curso obtenerCursoPorNombre(String nombre) {
+    // Array para almacenar el estudiante encontrado
+    Curso[] cursoEncontrado = new Curso[1];
+
+    // Método forEach de LinkList para iterar sobre los elementos de la lista.
+    cursos.forEach(curso -> {
+      if (curso.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
+        cursoEncontrado[0] = curso;
+      }
+    });
+
+    // Devuelve el estudiante encontrado
+    return cursoEncontrado[0];
+  }
+
+  /*
+   * Metodo para devolver estudiantes por su id
+   */
+  public Curso obtenerCursoPorId(String id) {
+    // Array para almacenar el estudiante encontrado
+    Curso[] cursoEncontrado = new Curso[1];
+
+    // Método forEach de LinkList para iterar sobre los elementos de la lista.
+    cursos.forEach(curso -> {
+      if (curso.getId().toLowerCase().equals(id.toLowerCase())) {
+        cursoEncontrado[0] = curso;
+      }
+    });
+
+    // Devuelve el estudiante encontrado
+    return cursoEncontrado[0];
+  }
 }
