@@ -7,10 +7,10 @@ import universidad.repositorios.CajasRepositorio;
 
 public class CajasControlador {
 
-  private CajasRepositorio repositorio;
+  private CajasRepositorio cajasRepositorio;
 
-  public CajasControlador() {
-    this.repositorio = new CajasRepositorio();
+  public CajasControlador(CajasRepositorio cajasRepositorio) {
+    this.cajasRepositorio = cajasRepositorio;
   }
 
   /**
@@ -19,7 +19,7 @@ public class CajasControlador {
    */
   public void atenderCola() {
     try {
-      String personaAtendida = repositorio.atendercola();
+      String personaAtendida = cajasRepositorio.atendercola();
 
       System.out.println("\nPersona atendida: " + personaAtendida);
     } catch (ColaVaciaExcepcion e) {
@@ -32,7 +32,7 @@ public class CajasControlador {
    */
   public String personaParaAtender() {
     try {
-      Persona persona = repositorio.personaParaAtender();
+      Persona persona = cajasRepositorio.personaParaAtender();
       return persona.getNombre();
     } catch (ColaVaciaExcepcion e) {
       System.out.println("\nError al atender: " + e.getMessage());
@@ -45,12 +45,12 @@ public class CajasControlador {
    */
   public void agregarPersona(String id, String nombre) {
     try {
-      if (repositorio.existePorId(id)) {
+      if (cajasRepositorio.existePorId(id)) {
         throw new PersonaEnColaExcepcion("Ya esta la persona en la cola");
       }
 
       Persona persona = new Persona(id, nombre);
-      repositorio.agregarAcola(persona);
+      cajasRepositorio.agregarAcola(persona);
 
       System.out.println("\nPersona en cola para ser atendida");
     } catch (PersonaEnColaExcepcion e) {

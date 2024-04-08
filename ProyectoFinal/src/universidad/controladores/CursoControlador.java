@@ -7,10 +7,10 @@ import universidad.utilidades.Utilities;
 
 public class CursoControlador {
 
-  private CursoRepositorio repositorio;
+  private CursoRepositorio cursoRepositorio;
 
-  public CursoControlador() {
-    this.repositorio = new CursoRepositorio();
+  public CursoControlador(CursoRepositorio cursoRepositorio) {
+    this.cursoRepositorio = cursoRepositorio;
   }
 
   /**
@@ -28,13 +28,13 @@ public class CursoControlador {
       // Generar un ID único para el curso
       String id = Utilities.generarIdUnico();
 
-      if (repositorio.existeCursoPorId(id)) {
+      if (cursoRepositorio.existeCursoPorId(id)) {
         throw new CursoYaExisteExcepcion(
           "Ya existe un curso con el id proporcionado."
         );
       }
       Curso curso = new Curso(id, nombre, descripcion, numeroGrupo);
-      repositorio.agregarCurso(curso);
+      cursoRepositorio.agregarCurso(curso);
 
       System.out.println("\nCurso agregado exitosamente.");
     } catch (CursoYaExisteExcepcion e) {
@@ -46,7 +46,7 @@ public class CursoControlador {
    * Imprime todos los cursos en el sistema
    */
   public void imprimirTodosLosCursos() {
-    repositorio
+    cursoRepositorio
       .obtenerTodosLosCursos()
       .forEach(curso -> System.out.println(curso.getNombre()));
   }

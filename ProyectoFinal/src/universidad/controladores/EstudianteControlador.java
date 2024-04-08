@@ -12,9 +12,12 @@ public class EstudianteControlador {
   private EstudianteRepositorio estudianteRepositorio;
   private CursoRepositorio cursoRepositorio;
 
-  public EstudianteControlador() {
-    this.estudianteRepositorio = new EstudianteRepositorio();
-    this.cursoRepositorio = new CursoRepositorio();
+  public EstudianteControlador(
+    EstudianteRepositorio estudianteRepositorio,
+    CursoRepositorio cursoRepositorio
+  ) {
+    this.estudianteRepositorio = estudianteRepositorio;
+    this.cursoRepositorio = cursoRepositorio;
   }
 
   /**

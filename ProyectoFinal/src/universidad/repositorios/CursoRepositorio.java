@@ -47,11 +47,16 @@ public class CursoRepositorio {
   public Curso obtenerCursoPorNombre(String nombre) {
     // Array para almacenar el curso encontrado
     Curso[] cursoEncontrado = new Curso[1];
+    System.out.println("Shit: " + cursos.isEmpty());
 
     // Método forEach de LinkList para iterar sobre los elementos de la lista.
     cursos.forEach(curso -> {
+      System.out.println("Revisando curso: " + curso.getNombre());
       if (curso.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
+        System.out.println("Curso encontrado: " + curso.getNombre());
         cursoEncontrado[0] = curso;
+      } else {
+        System.out.println("Curso NO encontrado:");
       }
     });
 

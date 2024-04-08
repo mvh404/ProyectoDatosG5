@@ -7,14 +7,34 @@ import universidad.controladores.CajasControlador;
 import universidad.controladores.CursoControlador;
 import universidad.controladores.EstudianteControlador;
 import universidad.controladores.ProfesorControlador;
+import universidad.repositorios.CajasRepositorio;
+import universidad.repositorios.CursoRepositorio;
+import universidad.repositorios.EstudianteRepositorio;
+import universidad.repositorios.ProfesorRepositorio;
 
 public class Menu {
 
+  //Intancias de repertorios
+  private static final CursoRepositorio cursoRepositorio = new CursoRepositorio();
+  private static final EstudianteRepositorio estudianteRepositorio = new EstudianteRepositorio();
+  private static final ProfesorRepositorio profesorRepositorio = new ProfesorRepositorio();
+  private static final CajasRepositorio cajasRepositorio = new CajasRepositorio();
+
   //Instancias de controladores
-  private static final CursoControlador cursoControlador = new CursoControlador();
-  private static final CajasControlador cajaControlador = new CajasControlador();
-  private static final EstudianteControlador estudianteControlador = new EstudianteControlador();
-  private static final ProfesorControlador profesorControlador = new ProfesorControlador();
+  private static final CursoControlador cursoControlador = new CursoControlador(
+    cursoRepositorio
+  );
+  private static final CajasControlador cajaControlador = new CajasControlador(
+    cajasRepositorio
+  );
+  private static final EstudianteControlador estudianteControlador = new EstudianteControlador(
+    estudianteRepositorio,
+    cursoRepositorio
+  );
+  private static final ProfesorControlador profesorControlador = new ProfesorControlador(
+    profesorRepositorio,
+    cursoRepositorio
+  );
 
   // Buffer para leer la entrada del usuario desde la consola.
   private static final BufferedReader reader = new BufferedReader(

@@ -12,9 +12,12 @@ public class ProfesorControlador {
   private ProfesorRepositorio profesorRepositorio;
   private CursoRepositorio cursoRepositorio;
 
-  public ProfesorControlador() {
-    this.profesorRepositorio = new ProfesorRepositorio();
-    this.cursoRepositorio = new CursoRepositorio();
+  public ProfesorControlador(
+    ProfesorRepositorio profesorRepositorio,
+    CursoRepositorio cursoRepositorio
+  ) {
+    this.profesorRepositorio = profesorRepositorio;
+    this.cursoRepositorio = cursoRepositorio;
   }
 
   /**
@@ -86,7 +89,7 @@ public class ProfesorControlador {
     }
 
     profesor.asignarCurso(curso);
-    System.out.println("\nEl profesor se inscribio exitosamente");
+    System.out.println("\nEl profesor fue asignado exitosamente");
   }
 
   /**
