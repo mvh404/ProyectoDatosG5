@@ -3,12 +3,10 @@ package universidad.utilidades;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
 import universidad.controladores.CajasControlador;
 import universidad.controladores.CursoControlador;
 import universidad.controladores.EstudianteControlador;
 import universidad.controladores.ProfesorControlador;
-import universidad.modelos.Estudiante;
 
 public class Menu {
 
@@ -103,7 +101,7 @@ public class Menu {
             crearEstudiante(reader);
             break;
           case 3:
-            asignarCurso(reader);
+            asignarCursoAEstudiante(reader);
             break;
           case 4:
             buscarEstudianteId(reader);
@@ -115,9 +113,7 @@ public class Menu {
             crearProfesor(reader);
             break;
           case 7:
-            System.out.println(
-              "Asignando curso a profesor desde el controlador"
-            );
+            asignarCursoAProfesor(reader);
             break;
           case 8:
             buscarProfesorNombre(reader);
@@ -175,9 +171,7 @@ public class Menu {
             agregarAcola(reader);
             break;
           case 2:
-
             MenuAtencion(reader);
-
             break;
           case 3:
             System.out.println("Volviendo al menú principal...");
@@ -205,14 +199,13 @@ public class Menu {
     System.out.println("Escribe una de las opciones:");
   }
 
-   /**
+  /**
    * Imprime las opciones del menú del sistema de cajas.
-   * @throws IOException 
+   * @throws IOException
    */
   private static void MenuAtencion(BufferedReader reader) throws IOException {
-    
     String persona = cajaControlador.personaParaAtender();
-    if(persona != null ){
+    if (persona != null) {
       System.out.println(divisor);
       System.out.println("La persona a anteder es: " + persona);
       System.out.println("Opciones de atención de persona:\n");
@@ -220,14 +213,13 @@ public class Menu {
       System.out.println("2. Cancelar");
       System.out.println(divisor);
       System.out.println("Escribe una de las opciones:");
-  
+
       boolean volver = false;
-  
+
       while (!volver) {
-  
         try {
           int opcion = Integer.parseInt(reader.readLine());
-  
+
           switch (opcion) {
             case 1:
               cajaControlador.atenderCola();
@@ -266,7 +258,6 @@ public class Menu {
     cursoControlador.imprimirTodosLosCursos();
   }
 
-
   /**
    * 2- Crear Estudiante
    */
@@ -284,12 +275,11 @@ public class Menu {
     estudianteControlador.imprimirTodosLosEstudiantes();
   }
 
-
-
-  //3- Asignar curso a estudiante por nombre
-
-
-  public static void asignarCurso(BufferedReader reader) throws IOException {
+  /**
+   * 3- Asignar curso a estudiante por nombre
+   */
+  private static void asignarCursoAEstudiante(BufferedReader reader)
+    throws IOException {
     System.out.print("Ingrese el nombre del estudiante: ");
     String nombreEstudiante = reader.readLine();
 
@@ -297,28 +287,28 @@ public class Menu {
     String nombreCurso = reader.readLine();
 
     estudianteControlador.asignarCurso(nombreCurso, nombreEstudiante);
-
   }
-
-
 
   /*
    * 4- Buscar estudiante por su ID
    */
-  private static void buscarEstudianteId(BufferedReader reader) throws IOException{
+  private static void buscarEstudianteId(BufferedReader reader)
+    throws IOException {
     System.out.println("Ingrese el id del estudiante a buscar: ");
-    String id = reader.readLine(); 
+    String id = reader.readLine();
+
+    estudianteControlador.buscarEstudiantePorId(id);
   }
 
   /*
    * 5- Buscar estudiante por su nombre
    */
-  private static void buscarEstudianteNombre(BufferedReader reader) throws IOException{
+  private static void buscarEstudianteNombre(BufferedReader reader)
+    throws IOException {
     System.out.println("Ingrese el nombre del estudiante a buscar: ");
-    String nombre = reader.readLine(); 
-    estudianteControlador.imprimirEstudianterporNombre(nombre);
+    String nombre = reader.readLine();
+    estudianteControlador.buscarEstudiantePorNombre(nombre);
   }
-
 
   /**
    * 6- Crear Profesor
@@ -339,24 +329,35 @@ public class Menu {
     profesorControlador.imprimirTodosLosProfesores();
   }
 
-   /*
-   * 8- Buscar profesor por su nombre
+  /**
+   * 7- Asignar curso a profesor
    */
-  private static void buscarProfesorNombre(BufferedReader reader) throws IOException{
-    System.out.println("Ingrese el nombre del profesor a buscar: ");
-    String nombre = reader.readLine(); 
-    
-    profesorControlador.imprimirProfesorporNombre(nombre);
+  private static void asignarCursoAProfesor(BufferedReader reader)
+    throws IOException {
+    System.out.print("Ingrese el nombre del profesor: ");
+    String nombreProfesor = reader.readLine();
 
+    System.out.print("Ingrese el nombre del curso: ");
+    String nombreCurso = reader.readLine();
+
+    profesorControlador.asignarCurso(nombreCurso, nombreProfesor);
   }
 
-
-
-    /**
-   * Persona a cola
-     *
+  /*
+   * 8- Buscar profesor por su nombre
    */
-  private static void agregarAcola(BufferedReader reader) throws IOException{
+  private static void buscarProfesorNombre(BufferedReader reader)
+    throws IOException {
+    System.out.println("Ingrese el nombre del profesor a buscar: ");
+    String nombre = reader.readLine();
+
+    profesorControlador.buscarProfesorPorNombre(nombre);
+  }
+
+  /**
+   * 9- Agregar persona a cola
+   */
+  private static void agregarAcola(BufferedReader reader) throws IOException {
     System.out.print("Ingrese el id de la persona: ");
     String id = reader.readLine();
 
@@ -365,5 +366,4 @@ public class Menu {
 
     cajaControlador.agregarPersona(id, nombre);
   }
-
 }

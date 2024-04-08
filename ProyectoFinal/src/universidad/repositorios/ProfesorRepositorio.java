@@ -21,14 +21,12 @@ public class ProfesorRepositorio {
     this.profesores = new LinkList<>();
   }
 
-   /**
+  /**
    * Constructor del repositorio de profesores.
-   * Usada para buscar profesores por nombre.
    */
   public ProfesorRepositorio(LinkList<Profesor> profesores) {
     this.profesores = profesores;
   }
-
 
   /**
    * Método para agregar un profesor a la lista enlazada.
@@ -58,15 +56,17 @@ public class ProfesorRepositorio {
    * Metodo para devolver profesores por su nombre
    */
   public Profesor obtenerProfesorPorNombre(String nombre) {
-    Predicate<Profesor> byNombre = profesor -> profesor.getNombre().equals(nombre);
-    Profesor[] profesorEncontrado = new Profesor[1]; // Array de una sola posición para almacenar el profesor encontrado
+    // Array para almacenar el profesor encontrado
+    Profesor[] profesorEncontrado = new Profesor[1];
 
+    // Método forEach de LinkList para iterar sobre los elementos de la lista.
     profesores.forEach(profesor -> {
-        if (byNombre.test(profesor)) {
-            profesorEncontrado[0] = profesor; // Almacena el profesor encontrado
-        }
+      if (profesor.getNombre().toLowerCase().equals(nombre.toLowerCase())) {
+        profesorEncontrado[0] = profesor;
+      }
     });
 
-    return profesorEncontrado[0]; // Devuelve el profesor encontrado (o null si no se encontró ninguno)
+    // Devuelve el profesor encontrado
+    return profesorEncontrado[0];
   }
 }

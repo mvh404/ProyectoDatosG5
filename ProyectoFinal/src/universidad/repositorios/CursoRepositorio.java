@@ -2,7 +2,6 @@ package universidad.repositorios;
 
 import java.util.function.Predicate;
 import universidad.modelos.Curso;
-import universidad.modelos.Estudiante;
 import universidad.utilidades.LinkList;
 
 /**
@@ -45,9 +44,8 @@ public class CursoRepositorio {
     return cursos;
   }
 
-
   public Curso obtenerCursoPorNombre(String nombre) {
-    // Array para almacenar el estudiante encontrado
+    // Array para almacenar el curso encontrado
     Curso[] cursoEncontrado = new Curso[1];
 
     // Método forEach de LinkList para iterar sobre los elementos de la lista.
@@ -57,25 +55,7 @@ public class CursoRepositorio {
       }
     });
 
-    // Devuelve el estudiante encontrado
-    return cursoEncontrado[0];
-  }
-
-  /*
-   * Metodo para devolver estudiantes por su id
-   */
-  public Curso obtenerCursoPorId(String id) {
-    // Array para almacenar el estudiante encontrado
-    Curso[] cursoEncontrado = new Curso[1];
-
-    // Método forEach de LinkList para iterar sobre los elementos de la lista.
-    cursos.forEach(curso -> {
-      if (curso.getId().toLowerCase().equals(id.toLowerCase())) {
-        cursoEncontrado[0] = curso;
-      }
-    });
-
-    // Devuelve el estudiante encontrado
+    // Devuelve el curso encontrado
     return cursoEncontrado[0];
   }
 }

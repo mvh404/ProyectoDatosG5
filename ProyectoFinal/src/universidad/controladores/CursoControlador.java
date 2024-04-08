@@ -13,6 +13,12 @@ public class CursoControlador {
     this.repositorio = new CursoRepositorio();
   }
 
+  /**
+   * Agrega un nuevo curso al sistema.
+   * Verifica primero si ya existe el curso con el mismo id para evitar duplicados.
+   * Si el curso ya existe, se lanza una excepción CursoYaExisteExcepcion.
+   * Si no, el curso se agrega exitosamente y se imprime un mensaje de confirmación.
+   */
   public void agregarCurso(
     String nombre,
     String descripcion,
@@ -36,6 +42,9 @@ public class CursoControlador {
     }
   }
 
+  /**
+   * Imprime todos los cursos en el sistema
+   */
   public void imprimirTodosLosCursos() {
     repositorio
       .obtenerTodosLosCursos()
