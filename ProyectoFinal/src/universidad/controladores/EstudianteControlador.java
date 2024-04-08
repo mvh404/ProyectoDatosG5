@@ -4,6 +4,8 @@ import universidad.excepciones.EstudianteExcepciones.EstudianteYaExisteExcepcion
 import universidad.modelos.Estudiante;
 import universidad.modelos.Curso;
 import universidad.repositorios.CursoRepositorio;
+=======
+import universidad.modelos.Profesor;
 import universidad.repositorios.EstudianteRepositorio;
 import universidad.utilidades.Utilities;
 
@@ -68,6 +70,7 @@ public class EstudianteControlador {
   }
 
 
+
   public void asignarCurso(String nombreCurso, String nombreEstudiante) {
     Estudiante estudiante = repositorio.obtenerEstudiantePorNombre(nombreEstudiante);
 
@@ -91,6 +94,7 @@ public class EstudianteControlador {
     estudiante.inscribirCurso(curso);
     System.out.println("\nEl estudiante se inscribio exitosamente");
   }
+
 
 
   public void imprimirEstudiante(Estudiante estudiante) {
