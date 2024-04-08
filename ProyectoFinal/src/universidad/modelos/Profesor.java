@@ -1,5 +1,6 @@
 package universidad.modelos;
 
+import java.util.function.Predicate;
 import universidad.utilidades.LinkList;
 
 public class Profesor extends Persona {
@@ -18,11 +19,19 @@ public class Profesor extends Persona {
     return carnet;
   }
 
-  
-
   //Setters
   public void setCarnet(String carnet) {
     this.carnet = carnet;
   }
-  //Asignar curso a un profesor = asignarCurso(Curso curso)
+
+  //Asignar el profesor a un curso
+  public void asignarCurso(Curso curso) {
+    cursosAsignados = LinkList.insertNode(cursosAsignados, curso);
+  }
+
+  public boolean estaAsignado(String id) {
+    //byId es la condición
+    Predicate<Curso> byId = curso -> curso.getId() == id;
+    return cursosAsignados.exists(byId);
+  }
 }

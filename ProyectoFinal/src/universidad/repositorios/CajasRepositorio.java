@@ -1,13 +1,13 @@
 package universidad.repositorios;
 
 import java.util.function.Predicate;
-
 import universidad.excepciones.CajasExcepciones.ColaVaciaExcepcion;
 import universidad.modelos.Persona;
 import universidad.utilidades.LinkList;
 import universidad.utilidades.Node;
 
 public class CajasRepositorio {
+
   // Lista enlazada genérica que acepta objetos de tipo Curso.
   private LinkList<Persona> cola;
 
@@ -21,16 +21,17 @@ public class CajasRepositorio {
 
   public String atendercola() throws ColaVaciaExcepcion {
     if (!cola.isEmpty()) {
-
       Node<Persona> persona = this.cola.getFirstNode();
       this.cola.deleteFirstNode();
       return persona.data.getNombre();
     } else {
-      throw new ColaVaciaExcepcion("No puede quitar elemento de una cola vacia");
+      throw new ColaVaciaExcepcion(
+        "No puede quitar elemento de una cola vacia"
+      );
     }
   }
 
-    /**
+  /**
    * Método para verificar si existe la persona en la cola.
    */
   public boolean existePorId(String id) {
@@ -38,14 +39,15 @@ public class CajasRepositorio {
     Predicate<Persona> byId = persona -> persona.getId() == id;
     return cola.exists(byId);
   }
-    /**
+
+  /**
    * Método para obtener a la persona para atender
    */
   public Persona personaParaAtender() throws ColaVaciaExcepcion {
     if (!cola.isEmpty()) {
       return this.cola.getFirstNode().data;
     } else {
-    throw new ColaVaciaExcepcion("No hay nadie en la cola");
-  }
+      throw new ColaVaciaExcepcion("No hay nadie en la cola");
+    }
   }
 }

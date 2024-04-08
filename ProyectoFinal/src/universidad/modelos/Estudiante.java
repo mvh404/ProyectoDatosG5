@@ -1,5 +1,6 @@
 package universidad.modelos;
 
+import java.util.function.Predicate;
 import universidad.utilidades.LinkList;
 
 public class Estudiante extends Persona {
@@ -10,13 +11,15 @@ public class Estudiante extends Persona {
     super(id, nombre, correo);
     this.cursosInscritos = new LinkList<>();
   }
-  //Incribir el estudiante a un curso = inscribirCurso(Curso curso)
 
+  //Incribir el estudiante a un curso
   public void inscribirCurso(Curso curso) {
-    cursosInscritos = LinkList.insertNode(cursosInscritos,curso);
+    cursosInscritos = LinkList.insertNode(cursosInscritos, curso);
   }
 
-  public boolean estaInscrito(Curso curso) {
-    return cursosInscritos.exists(curso);
+  public boolean estaInscrito(String id) {
+    //byId es la condición
+    Predicate<Curso> byId = curso -> curso.getId() == id;
+    return cursosInscritos.exists(byId);
   }
 }
