@@ -17,4 +17,10 @@ public class EstudianteExcepciones {
       super(mensaje);
     }
   }
+
+  public static class EstudianteNoExisteException extends Exception{
+    public EstudianteNoExisteException(String mensaje){
+      super(mensaje);
+    }
+  }
 }
