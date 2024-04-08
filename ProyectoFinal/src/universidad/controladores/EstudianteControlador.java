@@ -39,6 +39,11 @@ public class EstudianteControlador {
       .forEach(estudiante -> System.out.println(estudiante.getNombre()));
   }
 
+  /*
+   * Funcion para buscar estudiante por su nombre, este llama a 
+   * el repo y imprime lo que le devuelve, haciendo validacion de que exista este objeto.
+   */
+
   public void imprimirEstudianterporNombre(String nombre) {
     Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorNombre(nombre);
     if (estudianteEncontrado != null) {
@@ -49,5 +54,18 @@ public class EstudianteControlador {
     } else {
         System.out.println("No se encontró ningún estudiante con ese nombre.");
     }
-}
+  }
+
+  public void imprimirEstudianteporId(String  id){
+    Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorId(id);
+
+    if(estudianteEncontrado!= null){
+        System.out.println("Estudiante encontrado:");
+        System.out.println("ID: " + estudianteEncontrado.getId());
+        System.out.println("Nombre: " + estudianteEncontrado.getNombre());
+        System.out.println("Correo: " + estudianteEncontrado.getCorreo());
+    }else{
+      System.out.println("No se encontró ningún estudiante con ese numero de identificacion.");
+    }
+  }
 }

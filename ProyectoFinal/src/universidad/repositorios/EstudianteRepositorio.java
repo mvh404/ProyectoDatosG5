@@ -61,4 +61,21 @@ public class EstudianteRepositorio {
 
     return estudianteEncontrado[0]; // Devuelve el estudiante encontrado (o null si no se encontró ninguno)
 }
+
+  /*
+   * Funcion para buscar estudiante por su id
+   */
+
+   public Estudiante obtenerEstudiantePorId(String nombre) {
+    Predicate<Estudiante> byNombre = estudiante -> estudiante.getNombre().equals(nombre);
+    Estudiante[] estudianteEncontrado = new Estudiante[1]; // Array de una sola posición para almacenar el estudiante encontrado
+
+    estudiantes.forEach(estudiante -> {
+        if (byNombre.test(estudiante)) {
+            estudianteEncontrado[0] = estudiante; // Almacena el estudiante encontrado
+        }
+    });
+
+    return estudianteEncontrado[0]; // Devuelve el estudiante encontrado (o null si no se encontró ninguno)
+}
 }
