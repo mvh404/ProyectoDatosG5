@@ -8,6 +8,7 @@ import universidad.controladores.CajasControlador;
 import universidad.controladores.CursoControlador;
 import universidad.controladores.EstudianteControlador;
 import universidad.controladores.ProfesorControlador;
+import universidad.modelos.Estudiante;
 
 public class Menu {
 
@@ -102,9 +103,7 @@ public class Menu {
             crearEstudiante(reader);
             break;
           case 3:
-            System.out.println(
-              "Asignando curso a estudiante desde el controlador"
-            );
+            asignarCurso(reader);
             break;
           case 4:
             buscarEstudianteId(reader);
@@ -284,6 +283,24 @@ public class Menu {
     estudianteControlador.imprimirTodosLosEstudiantes();
   }
 
+
+
+  //3- Asignar curso a estudiante por nombre
+
+
+  public static void asignarCurso(BufferedReader reader) throws IOException {
+    System.out.print("Ingrese el nombre del estudiante: ");
+    String nombreEstudiante = reader.readLine();
+
+    System.out.print("Ingrese el nombre del curso: ");
+    String nombreCurso = reader.readLine();
+
+    estudianteControlador.asignarCurso(nombreCurso, nombreEstudiante);
+
+  }
+
+
+
   /*
    * 4- Buscar estudiante por su ID
    */
@@ -338,6 +355,7 @@ public class Menu {
   }
 
 
+
     /**
    * Persona a cola
      *
@@ -351,4 +369,5 @@ public class Menu {
 
     cajaControlador.agregarPersona(id, nombre);
   }
+
 }

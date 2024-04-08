@@ -61,6 +61,23 @@ public class LinkList<T> {
     }
     return false;
   }
+  
+
+  /*copia de exists que recibe un objeto y devuelve
+    true o false si ese objeto ya esta en la lista */
+  public boolean exists(T data) {
+
+    Node<T> current = head;
+
+    while (current != null) {
+      if (current.data == data) {
+        return true;
+      }
+      current = current.next;
+    }
+
+    return false;
+  }
 
   // Metodo para eliminar el primer nodo (head)
   public Node<T> getFirstNode() {

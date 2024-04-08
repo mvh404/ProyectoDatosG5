@@ -2,6 +2,9 @@ package universidad.controladores;
 
 import universidad.excepciones.EstudianteExcepciones.EstudianteYaExisteExcepcion;
 import universidad.modelos.Estudiante;
+import universidad.modelos.Curso;
+import universidad.repositorios.CursoRepositorio;
+=======
 import universidad.modelos.Profesor;
 import universidad.repositorios.EstudianteRepositorio;
 import universidad.utilidades.Utilities;
@@ -10,9 +13,11 @@ public class EstudianteControlador {
 
   private EstudianteRepositorio repositorio;
 
+
   public EstudianteControlador() {
     this.repositorio = new EstudianteRepositorio();
   }
+
 
   public void agregarEstudiante(String nombre, String correo) {
     try {
@@ -33,11 +38,13 @@ public class EstudianteControlador {
     }
   }
 
+
   public void imprimirTodosLosEstudiantes() {
     repositorio
       .obtenerTodosLosEstudiantes()
       .forEach(estudiante -> System.out.println(estudiante.getNombre()));
   }
+
 
   public void buscarEstudiantePorNombre(String nombre) {
     Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorNombre(
@@ -51,6 +58,7 @@ public class EstudianteControlador {
     }
   }
 
+
   public void buscarEstudiantePorId(String id) {
     Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorId(id);
 
@@ -60,6 +68,34 @@ public class EstudianteControlador {
       System.out.println("\nNo se encontró ningún estudiante con ese id.");
     }
   }
+
+
+
+  public void asignarCurso(String nombreCurso, String nombreEstudiante) {
+    Estudiante estudiante = repositorio.obtenerEstudiantePorNombre(nombreEstudiante);
+
+    if (estudiante == null) {
+      System.out.println("\nNo se encontró ningún estudiante con ese nombre.");
+      return;
+    }
+
+    Curso curso = new CursoRepositorio().obtenerCursoPorNombre(nombreCurso);
+
+    if (curso == null) {
+      System.out.println("\nNo se encontró ningún curso con ese nombre.");
+      return;
+    }
+
+    if (estudiante.estaInscrito(curso)) {
+      System.out.println("\nEl estudiante ya esta asignado a ese curso.");
+      return;
+    }
+
+    estudiante.inscribirCurso(curso);
+    System.out.println("\nEl estudiante se inscribio exitosamente");
+  }
+
+
 
   public void imprimirEstudiante(Estudiante estudiante) {
     System.out.println("\nEstudiante encontrado:\n");
