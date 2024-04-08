@@ -2,11 +2,13 @@ package universidad.controladores;
 
 import universidad.excepciones.EstudianteExcepciones.EstudianteYaExisteExcepcion;
 import universidad.modelos.Estudiante;
+=======
 import universidad.modelos.Curso;
 import universidad.repositorios.CursoRepositorio;
 =======
 import universidad.modelos.Profesor;
 import universidad.repositorios.EstudianteRepositorio;
+import universidad.utilidades.LinkList;
 import universidad.utilidades.Utilities;
 
 public class EstudianteControlador {
@@ -45,27 +47,42 @@ public class EstudianteControlador {
       .forEach(estudiante -> System.out.println(estudiante.getNombre()));
   }
 
+  /*
+   * Funcion para buscar estudiante por su nombre, este llama a 
+   * el repo y imprime lo que le devuelve, haciendo validacion de que exista este objeto.
+   */
+=======
 
   public void buscarEstudiantePorNombre(String nombre) {
     Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorNombre(
       nombre
     );
 
+  public void imprimirEstudianterporNombre(String nombre) {
+    Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorNombre(nombre);
     if (estudianteEncontrado != null) {
-      imprimirEstudiante(estudianteEncontrado);
+        System.out.println("Estudiante encontrado:");
+        System.out.println("ID: " + estudianteEncontrado.getId());
+        System.out.println("Nombre: " + estudianteEncontrado.getNombre());
+        System.out.println("Correo: " + estudianteEncontrado.getCorreo());
     } else {
-      System.out.println("\nNo se encontró ningún estudiante con ese nombre.");
+        System.out.println("No se encontró ningún estudiante con ese nombre.");
     }
   }
 
+  public void imprimirEstudianteporId(String  id){
+=======
 
   public void buscarEstudiantePorId(String id) {
     Estudiante estudianteEncontrado = repositorio.obtenerEstudiantePorId(id);
 
-    if (estudianteEncontrado != null) {
-      imprimirEstudiante(estudianteEncontrado);
-    } else {
-      System.out.println("\nNo se encontró ningún estudiante con ese id.");
+    if(estudianteEncontrado!= null){
+        System.out.println("Estudiante encontrado:");
+        System.out.println("ID: " + estudianteEncontrado.getId());
+        System.out.println("Nombre: " + estudianteEncontrado.getNombre());
+        System.out.println("Correo: " + estudianteEncontrado.getCorreo());
+    }else{
+      System.out.println("No se encontró ningún estudiante con ese numero de identificacion.");
     }
   }
 
